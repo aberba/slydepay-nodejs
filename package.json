@@ -1,0 +1,29 @@
+{
+    "name": "@aberba/slydepay",
+    "version": "0.1.0",
+    "description": "Slydepay API for Node.js",
+    "main": "index.js",
+    "scripts": {
+        "test-momo": "node tests/pay.test.js"
+    },
+    "keywords": [
+        "slydepay",
+        "visa",
+        "mastercard",
+        "mobile money",
+        "momo",
+        "payments"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/aberba/slydepay-nodejs.git"
+    },
+    "bugs": {
+        "url": "https://github.com/aberba/slydepay-nodejs/issues"
+    },
+    "author": "Lawrence Aberba <karabutaworld@gmail.com>",
+    "license": "BSL-1.0",
+    "dependencies": {
+        "node-fetch": "^2.2.0"
+    }
+}
