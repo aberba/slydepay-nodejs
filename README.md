@@ -65,7 +65,7 @@ const merchant = new Slydepay({
     }
     */
 
-    const result = await merchant.listPayOptions(options);
+    const result = await merchant.createAndSendInvoice(options);
     console.log("API response: ", result)
     if (result.success) {
         // Invoice created successfully
@@ -101,6 +101,7 @@ Other functions are available for Slydepay's payment options. Read their [REST A
 
 * `merchant.listPayOptions()`: 
 * `merchant.createInvoice(options)`
+* `merchant.createAndSendInvoice(options)`
 * `merchant.sendInvoice(options)`
 * `merchant.checkPaymentStatus(options)`
 * `merchant.confirmTransaction(options)`

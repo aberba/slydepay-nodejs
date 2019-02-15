@@ -52,7 +52,7 @@ const merchant = new Slydepay({
         }
         */
 
-        const result = await merchant.listPayOptions(options);
+        const result = await merchant.createAndSendInvoice(options);
         console.log("API response: ", result)
         if (result.success) {
             // Invoice created successfully
