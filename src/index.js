@@ -1,8 +1,14 @@
 const fetch = require("node-fetch");
 
-async function fetchJSON(hostURL, options) {
+async function fetchJSON(hostURL, options = {}) {
     return await fetch(hostURL, options)
-        .then(res => res.json());
+        .then(res => {
+            try {
+                return res.json();
+            } catch (error) {
+                return Promise.reject(res);
+            }
+        });
 };
 
 class Slydepay {
@@ -43,14 +49,14 @@ class Slydepay {
     }
 
     // Reusable request method
-    async sendRequest(url, options) {
+    async sendRequest(url, options = {}) {
         try {
             return await fetchJSON(url, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
 
                 // Inject Slydepay credentials here
-                data: JSON.stringify(Object.assign(options, {
+                body: JSON.stringify(Object.assign(options, {
                     emailOrMobileNumber: this.emailOrMobileNumber,
                     merchantKey: this.merchantKey
                 }))

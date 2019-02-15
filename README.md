@@ -1,5 +1,5 @@
 # Hubtel API
-This is an unofficial [Slydepay API](https://slydepay.com.gh) for Node.js.
+This is an unofficial [Slydepay](https://slydepay.com.gh) API for Node.js.
 
 ## Installation
 Using Node.js v8.X or latest, you install using:
@@ -27,13 +27,16 @@ const merchant = new Slydepay({
 
 (async () => {
     // See http://doc.slydepay.com/#api-Invoicing-ListPayOptions
+    try {
     const payOptions = await merchant.listPayOptions();
 
+    // NOTE: you don't need to add your emailOrMobileNumber and 
+    // merchantKey to options since they are automatically injected 
+    // using value passed when calling new Slydepay({...}) 
     const options = {
-        emailOrMobileNumber: "merchant@awesomecustomer.com",
-        merchantKey: "thatkeyyoushouldkeepsecret",
         amount: 123.4,
-        orderCode: "my-uniquely-generated-order-id"
+        // e.g an ID you use to keep track of transactions in your app
+        orderCode: "your custom uniquely generated ordertransaction ID" 
     };
 
     // alternative options format (with orderItems)
@@ -62,8 +65,8 @@ const merchant = new Slydepay({
     }
     */
 
-    const result = await merchant.createInvoice(options);
-
+    const result = await merchant.listPayOptions(options);
+    console.log("API response: ", result)
     if (result.success) {
         // Invoice created successfully
         // See http://doc.slydepay.com/#api-Invoicing-CreateInvoice 
@@ -75,16 +78,30 @@ const merchant = new Slydepay({
         // See http://doc.slydepay.com/#api-Invoicing-CreateInvoice
         // for the various errors codes and their meaning to 
         // handle request accordingly 
+
+        /** 
+        e.g. response
+        { 
+            success: false,
+            result: null,
+            errorMessage: 'Invalid Merchant Key. Please use a valid merchant key',
+            errorCode: 'INVALID_MERCHANT_KEY' 
+        }
+        */
     }
-})
+
+} catch(error){
+    console.log("Error:", error)
+}
+})()
 ```
 
 ### Supported methods
-Other functions are available for Slydepay's payment options. Read their [REST API documentation](doc.slydepay.com) to understand the **parameters** require and **add them to the options parameter** when making a request. List include:
+Other functions are available for Slydepay's payment options. Read their [REST API documentation](doc.slydepay.com) to understand the **parameters** required and **add them to the options parameter** when making a request. List include:
 
-* `listPayOptions()`: 
-* `createInvoice(options)`
-* `sendInvoice(options)`
-* `checkPaymentStatus(options)`
-* `confirmTransaction(options)`
-* `cancelTransaction(options)`
+* `merchant.listPayOptions()`: 
+* `merchant.createInvoice(options)`
+* `merchant.sendInvoice(options)`
+* `merchant.checkPaymentStatus(options)`
+* `merchant.confirmTransaction(options)`
+* `merchant.cancelTransaction(options)`

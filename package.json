@@ -4,7 +4,7 @@
     "description": "Slydepay API for Node.js",
     "main": "index.js",
     "scripts": {
-        "test-momo": "node tests/pay.test.js"
+        "test-payment-options": "node tests/pay.test.js"
     },
     "keywords": [
         "slydepay",
