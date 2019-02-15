@@ -37,7 +37,7 @@ const merchant = new Slydepay({
     const options = {
         amount: 123.4,
         // e.g an ID you use to keep track of transactions in your app
-        orderCode: "your custom uniquely generated ordertransaction ID" 
+        orderCode: "your custom uniquely generated order/transaction ID" 
     };
 
     // alternative options format (with orderItems)
