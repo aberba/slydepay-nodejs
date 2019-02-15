@@ -1,4 +1,4 @@
-# Hubtel API
+# SlydePay Merchant API
 This is an unofficial [Slydepay](https://slydepay.com.gh) API for Node.js.
 
 ## Installation
