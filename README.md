@@ -29,6 +29,7 @@ const merchant = new Slydepay({
     // See http://doc.slydepay.com/#api-Invoicing-ListPayOptions
     try {
     const payOptions = await merchant.listPayOptions();
+    console.log("Slydepay payment options: ", payOptions)
 
     // NOTE: you don't need to add your emailOrMobileNumber and 
     // merchantKey to options since they are automatically injected 
@@ -65,7 +66,7 @@ const merchant = new Slydepay({
     }
     */
 
-    const result = await merchant.createAndSendInvoice(options);
+    const result = await merchant.createInvoice(options);
     console.log("API response: ", result)
     if (result.success) {
         // Invoice created successfully
